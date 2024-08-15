@@ -1,0 +1,32 @@
+{
+  "properties": {
+    "userName": {
+      "type": "keyword"
+    },
+    "password": {
+      "type": "keyword"
+    },
+    "downloaderConfig": {
+      "properties": {
+        "type": {
+          "type": "keyword"
+        },
+        "host": {
+          "type": "keyword"
+        },
+        "port": {
+          "type": "integer"
+        },
+        "userName": {
+          "type": "keyword"
+        },
+        "password": {
+          "type": "keyword"
+        },
+        "use": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

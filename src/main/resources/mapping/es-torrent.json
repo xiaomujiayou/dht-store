@@ -1,0 +1,49 @@
+{
+  "properties": {
+    "hash": {
+      "type": "keyword"
+    },
+    "name": {
+      "type": "text",
+      "analyzer": "ik_max_word",
+      "search_analyzer": "ik_smart"
+    },
+    "files": {
+      "properties": {
+        "path": {
+          "type": "text",
+          "analyzer": "ik_max_word",
+          "search_analyzer": "ik_smart"
+        },
+        "length": {
+          "type": "long"
+        }
+      }
+    },
+    "length": {
+      "type": "long"
+    },
+    "hot": {
+      "type": "long"
+    },
+    "createTime": {
+      "type": "date"
+    },
+    "updateTime": {
+      "type": "date"
+    },
+    "magnets": {
+      "properties": {
+        "hash": {
+          "type": "keyword"
+        },
+        "hot": {
+          "type": "long"
+        },
+        "createTime": {
+          "type": "date"
+        }
+      }
+    }
+  }
+}

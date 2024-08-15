@@ -1,0 +1,65 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: dht-store
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+#  profiles:
+#    active: dev,base
+  main:
+    allow-bean-definition-overriding: true
+  elasticsearch:
+    uris: 127.0.0.1:9200
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    admin-port: 15672
+    username: root
+    password: 123456
+    connection-timeout: 15000     #连接超时时间
+    type: simple
+    #    publisher-confirms: true
+    #    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual        #消费确认置为手动
+        prefetch: 1                     #限流（海量数据，同时只能过来一条）
+        concurrency: 1                  #消费端
+        max-concurrency: 100            #最大消费端数
+        default-requeue-rejected: false #  设置为false，消息重试失败后丢弃或发往死信队列
+        retry:
+          enabled: true                 # 允许消息消费失败的重试
+          max-attempts: 1               # 消息最多消费次数3次
+          initial-interval: 10000       # 消息多次消费的间隔10秒
+
+sa-token:
+  # token 名称（同时也是 cookie 名称）
+  token-name: token
+  # token 有效期（单位：秒） 默认30天，-1 代表永久有效
+  timeout: 2592000
+  # token 最低活跃频率（单位：秒），如果 token 超过此时间没有访问系统就会被冻结，默认-1 代表不限制，永不冻结
+  active-timeout: -1
+  # 是否允许同一账号多地同时登录 （为 true 时允许一起登录, 为 false 时新登录挤掉旧登录）
+  is-concurrent: true
+  # 在多人登录同一账号时，是否共用一个 token （为 true 时所有登录共用一个 token, 为 false 时每次登录新建一个 token）
+  is-share: true
+  # token 风格（默认可取值：uuid、simple-uuid、random-32、random-64、random-128、tik）
+  token-style: uuid
+  # 是否输出操作日志
+  is-log: true
+
+#Web端初始化默认账号密码
+auth:
+  #默认账号
+  userName: admin
+  #默认密码
+  password: '123456'
+
+logging:
+  level:
+    com.dht: info
+    org.elasticsearch: error
